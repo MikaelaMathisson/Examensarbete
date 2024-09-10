@@ -1,3 +1,5 @@
+// Använd smkostgotamc.se som ide för att skapa en startsida för Arlanda MC.
+
 export default function Home() {
   return (
     <main className="flex min-h-screen bg-gray-100 p-4">
