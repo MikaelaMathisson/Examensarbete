@@ -22,6 +22,7 @@ export default function Home() {
       <div className="w-3/4 bg-white p-8 shadow-lg rounded-lg ml-4">
         <h1 className="text-3xl font-bold mb-4">Välkommen till Arlanda MC</h1>
         <p className="text-lg">TEXT</p>
+        <p>MIkaela är bäst</p>
       </div>
     </main>
   );
