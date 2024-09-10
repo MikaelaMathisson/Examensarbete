@@ -17,6 +17,12 @@ const Navbar = () => {
         <Link href="/medlemmar" className="mr-4">
           Medlemmar
         </Link>
+        <Link href="/medlem" className="mr-4">
+          Bli medlem
+        </Link>
+        <Link href="/crosskola" className="mr-4">
+          Crosskola
+        </Link>
       </h1>
     </nav>
   );
