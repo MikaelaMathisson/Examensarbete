@@ -4,7 +4,7 @@ export default function Home() {
       <aside className="w-1/4 bg-white p-4 shadow-lg rounded-lg">
         <section className="mb-4">
           <h2 className="text-xl font-bold mb-2">Reklam</h2>
-          <p>Innehåll för reklam</p>
+          <p>Innehåll för Reklam</p>
         </section>
         <section className="mb-4">
           <h2 className="text-xl font-bold mb-2">Karusell med nyheter</h2>
