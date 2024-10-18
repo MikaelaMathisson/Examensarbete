@@ -18,13 +18,6 @@ const Medlemmar = () => {
             <li className="mb-2">Exklusiva träningstillfällen.</li>
             <li className="mb-2">Nyhetsbrev och uppdateringar.</li>
           </ul>
-          <h2 className="text-2xl font-bold mb-2 text-black">Våra Medlemmar</h2>
-          <ul className="list-disc list-inside text-black mb-4">
-            <li className="mb-2">Medlem 1</li>
-            <li className="mb-2">Medlem 2</li>
-            <li className="mb-2">Medlem 3</li>
-            <li className="mb-2">Medlem 4</li>
-          </ul>
         </div>
       </main>
   );
