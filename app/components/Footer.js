@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-800 text-white py-8 relative z-10">
+        <footer className="bg-gray-800 text-white py-8">
             <div className="container mx-auto px-4 flex flex-wrap justify-between">
                 {/* Kontaktsektion */}
                 <div className="w-full md:w-1/3 mb-8 text-center md:text-left">
@@ -30,7 +30,6 @@ const Footer = () => {
                         <li><a href="https://www.google.com/maps/search/?api=1&query=Arlanda+MC,+123+45+Stockholm" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">Hitta till oss</a></li>
                         <li><a href="/contact" className="hover:text-gray-400">Kontakt</a></li>
                         <li><a href="/latestNews" className="hover:text-gray-400">Senaste nytt</a></li>
-                        <li><a href="/integritypolicy" className="hover:text-gray-400">Integritetspolicy</a></li>
                     </ul>
                 </div>
 
