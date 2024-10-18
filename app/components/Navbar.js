@@ -11,7 +11,7 @@ const Navbar = () => {
           </Link>
         </div>
         <h1 className="text-black font-semibold text-lg tracking-wide">
-          <Link href="/senasteNytt" className="mr-6 hover:text-gray-700">
+          <Link href="/latestNews" className="mr-6 hover:text-gray-700">
             Senaste nytt
           </Link>
           <Link href="/mx" className="mr-10 hover:text-gray-700">
@@ -20,10 +20,10 @@ const Navbar = () => {
           <Link href="/enduro" className="mr-10 hover:text-gray-700">
             Enduro
           </Link>
-          <Link href="/medlemmar" className="mr-10 hover:text-gray-700">
+          <Link href="/members" className="mr-10 hover:text-gray-700">
             Medlemmar
           </Link>
-          <Link href="/medlem" className="mr-10 hover:text-gray-700">
+          <Link href="/member" className="mr-10 hover:text-gray-700">
             Bli medlem
           </Link>
           <Link href="/crosskola" className="mr-10 hover:text-gray-700">
