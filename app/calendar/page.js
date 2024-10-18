@@ -4,28 +4,20 @@
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import mongoose from 'mongoose';
+import './CalendarStyles.css'; // Custom styles if needed
 
-const EventSchema = new mongoose.Schema({
-    title: String,
-    date: Date,
-});
-
-const Event = mongoose.model('Event', EventSchema);
-
-const MyCalendar = () => {
+const CalendarPage = () => {
     const [events, setEvents] = useState([]);
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
-        mongoose.connect('mongodb://localhost:27017/yourdbname', { useNewUrlParser: true, useUnifiedTopology: true });
-        Event.find({}, (err, events) => {
-            if (err) {
-                console.error(err);
-            } else {
-                setEvents(events);
-            }
-        });
+        const fetchEvents = async () => {
+            const response = await fetch('/api/events');
+            const data = await response.json();
+            setEvents(data);
+        };
+
+        fetchEvents();
     }, []);
 
     const tileContent = ({ date, view }) => {
@@ -36,15 +28,18 @@ const MyCalendar = () => {
     };
 
     return (
-        <div className="bg-gray-800 text-white p-8">
-            <h2 className="text-2xl font-bold mb-4">Kalender</h2>
-            <Calendar
-                onChange={setDate}
-                value={date}
-                tileContent={tileContent}
-            />
+        <div className="bg-gray-800 text-white p-8 flex justify-center items-center min-h-screen">
+            <div>
+                <h2 className="text-2xl font-bold mb-4 text-center">Kalender</h2>
+                <Calendar
+                    onChange={setDate}
+                    value={date}
+                    tileContent={tileContent}
+                    className="custom-calendar" // Add a custom class if needed
+                />
+            </div>
         </div>
     );
 };
 
-export default MyCalendar;
+export default CalendarPage;

@@ -1,13 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* globals.css */
+
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 body {
@@ -15,7 +14,11 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 main {
     flex-grow: 1;
 }
@@ -49,4 +52,21 @@ padding: 0;
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+
+/* Styles for calendar */
+.custom-calendar {
+    width: 100%;
+    color: #000; /* Ensure text color is visible */
+}
+
+.react-calendar__tile {
+    padding: 10px;
+    text-align: center;
+}
+
+.react-calendar__tile--active {
+    background: #006edc;
+    color: white;
 }
