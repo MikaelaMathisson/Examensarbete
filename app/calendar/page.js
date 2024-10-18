@@ -28,8 +28,8 @@ const CalendarPage = () => {
     };
 
     return (
-        <div className="bg-gray-800 text-white p-8 flex justify-center items-center min-h-screen">
-            <div>
+        <div className="calendar-page-container">
+            <div className="calendar-wrapper">
                 <h2 className="text-2xl font-bold mb-4 text-center">Kalender</h2>
                 <Calendar
                     onChange={setDate}
