@@ -3,44 +3,6 @@
 @tailwind utilities;
 @import "@fortawesome/fontawesome-svg-core/styles.css";
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-#root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main {
-    flex-grow: 1;
-}
-.main-content {
-    padding-top: 65px;
-}
-.main-content .flex-row {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-}
-.main-content .flex-row > div {
-    margin: 0 10px;
-}
-
-footer {
-    position: relative;
-    z-index: 10;
-}
-
 .bg-home {
     background-size: cover;
     background-position: center;
@@ -52,24 +14,52 @@ footer {
 @keyframes slideBackground {
     0% {
         background-image: url("/background1.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     15% {
         background-image: url("/background2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     30% {
         background-image: url("/background3.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     45% {
         background-image: url("/background1.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     60% {
         background-image: url("/background1.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     75% {
         background-image: url("/background2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     100% {
         background-image: url("/background3.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 }
 
@@ -80,117 +70,15 @@ footer {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-.full-width-div {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
 
-.text-logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: yellow;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Black corners */
-}
-.icon-shadow {
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Black corners */
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* globals.css */
+.text-outline {
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px  1px 0 #000,
+            1px  1px 0 #000;
 }
 
 
-/* Styles for calendar */
-.custom-calendar {
-    width: 100%;
-    color: #000; /* Ensure text color is visible */
-}
 
-.react-calendar__tile {
-    padding: 10px;
-    text-align: center;
-}
-
-.react-calendar__tile--active {
-    background: #006edc;
-    color: white;
-}
-
-/* Styles for opening hours on home page */
-.opening-hours {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 65px;
-}
-
-.opening-hours h2 {
-    color: #333;
-}
-
-.opening-hours ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.opening-hours li {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-
-.tracks {
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: #555;
-}
-
-/* Styles for calender and member buttons under welcome sign */
-.additional-links {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.additional-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #006edc;
-    text-decoration: none;
-    margin-bottom: 10px;
-}
-
-.additional-links a:hover {
-    text-decoration: underline;
-}
-
-.additional-links img {
-    margin-left: 8px;
-    width: 24px;
-    height: 24px;
-}
-
-.additional-links button {
-    margin-left: 8px;
-    background-color: #006edc;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.additional-links button:hover {
-    background-color: #005bb5;
-}
-
-/* Styles for icons to be black */
-.icon-black {
-    color: black;
-}
