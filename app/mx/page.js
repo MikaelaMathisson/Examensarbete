@@ -20,6 +20,22 @@ const Page = () => {
             <li className="mb-2">Lördag: 09:00 - 17:00</li>
             <li className="mb-2">Söndag: 09:00 - 15:00</li>
           </ul>
+
+          <h1 className="text-4xl font-extrabold mb-4 text-black drop-shadow-lg">
+            Prislista
+          </h1>
+          <h1 className="text-4xl font-extrabold mb-4 text-black drop-shadow-lg">
+            Vanliga frågor
+          </h1>
+          <h1 className="text-4xl font-extrabold mb-4 text-black drop-shadow-lg">
+            Träningstider - Uppdelning
+          </h1>
+          <h1 className="text-4xl font-extrabold mb-4 text-black drop-shadow-lg">
+            GoBraap
+          </h1>
+          <h1 className="text-4xl font-extrabold mb-4 text-black drop-shadow-lg">
+            Licenser och försäkringar
+          </h1>
         </div>
       </main>
   );

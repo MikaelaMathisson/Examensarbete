@@ -1,22 +1,21 @@
-// app/components/Navbar.js
 "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt, faShoppingCart, faInfoCircle, faMapMarkerAlt, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faShoppingCart, faInfoCircle, faMapMarkerAlt, faEnvelope, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const Navbar = () => {
     const currentPath = usePathname();
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const router = useRouter();
 
     const linkClasses = (path) =>
         `mr-10 hover:text-gray-700 font-bold ${currentPath === path ? 'text-yellow-500' : 'text-white'}`;
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const handleMotocrossClick = () => {
+        router.push('/mx');
     };
 
     return (
@@ -30,32 +29,24 @@ const Navbar = () => {
                 <Link href="/latestNews" className={linkClasses('/latestNews')} title="Senaste nytt">
                     Senaste nytt
                 </Link>
-                <div className="relative">
-                    <button onClick={toggleDropdown} className={linkClasses('/mx')} title="MX">
-                        MX
-                    </button>
-                    {isDropdownOpen && (
-                        <div className="absolute bg-white shadow-lg rounded-lg mt-2">
-                            <Link href="/mx/prislista" className="block px-4 py-2 text-black hover:bg-gray-200">Prislista</Link>
-                            <Link href="/mx/faq" className="block px-4 py-2 text-black hover:bg-gray-200">Vanliga frågor</Link>
-                            <Link href="/mx/traningstider" className="block px-4 py-2 text-black hover:bg-gray-200">Träningstider och Uppdelning</Link>
-                            <Link href="/mx/info" className="block px-4 py-2 text-black hover:bg-gray-200">Info</Link>
-                            <Link href="/mx/gobraap" className="block px-4 py-2 text-black hover:bg-gray-200">GoBraap</Link>
-                            <Link href="/mx/licens" className="block px-4 py-2 text-black hover:bg-gray-200">Licens och Försäkringar</Link>
-                        </div>
-                    )}
-                </div>
-                <Link href="/enduro" className={linkClasses('/enduro')} title="Enduro">
+                <button onClick={handleMotocrossClick} className={`${linkClasses('/mx')} flex items-center`} title="MX">
+                    Motocross
+                    <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs"/>
+                </button>
+                <Link href="/enduro" className={`${linkClasses('/enduro')} flex items-center`} title="Enduro">
                     Enduro
+                    <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs" />
                 </Link>
-                <Link href="/members" className={linkClasses('/members')} title="Medlemmar">
+                <Link href="/members" className={`${linkClasses('/members')} flex items-center`} title="Medlemmar">
                     Medlemmar
+                    <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs" />
                 </Link>
                 <Link href="/member" className={linkClasses('/member')} title="Bli medlem">
                     Bli medlem
                 </Link>
-                <Link href="/crosskola" className={linkClasses('/crosskola')} title="Crosskola">
+                <Link href="/crosskola" className={`${linkClasses('/crosskola')} flex items-center`} title="Crosskola">
                     Crosskola
+                    <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs" />
                 </Link>
                 <Link href="/calendar" className={linkClasses('/calendar')} title="Kalender">
                     <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
