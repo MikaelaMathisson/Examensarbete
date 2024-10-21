@@ -21,9 +21,14 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className="h-full">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-other`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen bg-other h-full m-0 p-0`}>
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow pt-16">
+            <div className="flex flex-row items-start justify-between w-full">
+                <div className="mx-2"></div>
+            </div>
+            {children}
+        </main>
         <Footer />
         </body>
         </html>
