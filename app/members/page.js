@@ -4,7 +4,7 @@ import "../globals.css";
 const Medlemmar = () => {
   return (
       <main className="absolute inset-0 flex items-center justify-center min-h-screen bg-other bg-gray-100  p-4">
-        <div className="bg-opacity-50 bg-white p-8 shadow-lg rounded-lg text-center">
+        <div className="bg-opacity-75 bg-white p-8 shadow-lg rounded-lg text-center">
           <h1 className="text-4xl font-extrabold mb-4 text-black drop-shadow-lg">
             Medlemmar
           </h1>
