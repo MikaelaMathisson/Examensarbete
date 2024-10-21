@@ -87,7 +87,7 @@ footer {
     z-index: 10;
 }
 
-.bg-page {
+.bg-home {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -117,6 +117,14 @@ footer {
     100% {
         background-image: url("/background3.jpg");
     }
+}
+
+.bg-other {
+    background-image: url("/background1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .full-width-div {
     width: 100%;
