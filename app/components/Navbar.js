@@ -13,16 +13,16 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const linkClasses = (path) =>
-        `mr-10 hover:text-gray-700 font-bold ${currentPath === path ? 'text-yellow-500' : 'text-black'}`;
+        `mr-10 hover:text-gray-700 font-bold ${currentPath === path ? 'text-yellow-500' : 'text-white'}`;
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-30 bg-transparent">
+        <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-30 bg-gray-800">
             <div className="flex items-center">
-                <Link href="/" className="text-logo whitespace-nowrap font-bold">
+                <Link href="/" className="text-2xl font-bold text-yellow-500 text-outline">
                     ARLANDA MC
                 </Link>
             </div>

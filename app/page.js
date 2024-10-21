@@ -14,11 +14,11 @@ const openingHours = [
 
 export default function Home() {
     return (
-        <div className="flex flex-col min-h-screen">
-            <main className="flex-grow flex items-center justify-center  bg-gray-100 bg-opacity-50 p-4 main-content bg-home">
+        <div className="flex flex-col h-screen">
+            <main className="flex-grow flex items-center justify-center bg-gray-100 bg-opacity-50 p-4 main-content bg-home h-screen">
                 <div className="flex flex-col items-center justify-center w-full max-w-4xl relative">
-                    <div className="flex flex-row items-start justify-between w-full equal-height">
-                        <div className="bg-opacity-50 bg-white p-8 shadow-lg rounded-lg text-center w-2/3 mb-4">
+                    <div className="flex flex-row items-stretch justify-between w-full equal-height">
+                        <div className="bg-opacity-50 bg-white p-8 shadow-lg rounded-lg text-center w-2/3 mb-20 flex flex-col justify-center">
                             <h1 className="font-bold mb-4 text-black drop-shadow-lg">
                                 <span className="font-bold text-4xl">Välkommen till</span> <br/>
                                 <span className="font-extrabold text-6xl">Arlanda MC</span>
@@ -26,27 +26,24 @@ export default function Home() {
                             <p className="text-lg mb-4 text-black">
                                 Klubben för motorcykelentusiaster
                             </p>
-                            <div className="additional-links mt-4">
+                            <div className="mt-5 text-center">
                                 <section className="text-lg text-black">
-
-                                    <a href="/calendar" className="flex items-center">
-                                    <p className="text-black font-bold">Kalender</p>
-                                        <FontAwesomeIcon icon={faCalendarAlt} className="ml-2 w-6 h-6 icon-black"/>
+                                    <a href="/calendar" className="flex items-center justify-center text-blue-600 no-underline mb-2 hover:underline">
+                                        <p className="text-black font-bold">Kalender</p>
+                                        <FontAwesomeIcon icon={faCalendarAlt} className="ml-2 w-6 h-6 text-black"/>
                                     </a>
                                 </section>
-                                <p className="text-lg text-black mt-2">
-
-                                </p>
+                                <p className="text-lg text-black mt-2"></p>
                             </div>
                         </div>
-                        <div className="opening-hours bg-opacity-50 bg-white p-8 shadow-lg rounded-lg w-1/3 mb-4">
-                            <h2 className="text-2xl font-bold mb-4">Öppettider denna vecka</h2>
-                            <ul className="text-lg text-black">
+                        <div className="bg-white bg-opacity-75 p-5 rounded-lg shadow-md max-w-xs mx-auto flex flex-col justify-center">
+                            <h2 className="text-2xl font-bold mb-4 text-gray-800">Öppettider denna vecka</h2>
+                            <ul className="list-none p-0">
                                 {openingHours.map((item, index) => (
-                                    <li key={index} className="mb-5">
+                                    <li key={index} className="flex flex-col justify-between py-1.5 mb-5">
                                         <span className="font-semibold">{item.day}:</span> {item.hours}
                                         {item.tracks.length > 0 && (
-                                            <div className="tracks">
+                                            <div className="mt-1 text-sm text-gray-800">
                                                 <span className="font-semibold">Banor öppna:</span> {item.tracks.join(", ")}
                                             </div>
                                         )}
