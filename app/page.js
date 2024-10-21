@@ -27,13 +27,13 @@ export default function Home() {
                                 Klubben för motorcykelentusiaster
                             </p>
                             <div className="additional-links mt-4">
-                                <p className="text-lg text-black">
+                                <section className="text-lg text-black">
 
                                     <a href="/calendar" className="flex items-center">
                                     <p className="text-black font-bold">Kalender</p>
                                         <FontAwesomeIcon icon={faCalendarAlt} className="ml-2 w-6 h-6 icon-black"/>
                                     </a>
-                                </p>
+                                </section>
                                 <p className="text-lg text-black mt-2">
 
                                 </p>
