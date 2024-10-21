@@ -1,8 +1,7 @@
 "use client";
 import localFont from "next/font/local";
-import { usePathname } from "next/navigation";
 import "./globals.css";
-import {metadata} from "@/app/metadata";
+import { metadata } from "@/app/metadata";
 
 // components
 import Navbar from "./components/Navbar";
@@ -20,12 +19,9 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
-    const pathname = usePathname();
-    const isHomePage = pathname === "/";
-
     return (
         <html lang="en" className="h-full">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen ${isHomePage ? "bg-home" : "bg-other"}`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-other`}>
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

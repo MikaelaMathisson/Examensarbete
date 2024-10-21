@@ -31,7 +31,7 @@ const Page = () => {
 
   return (
       <div className="flex justify-center items-center min-h-screen bg-page p-5 font-sans">
-        <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full">
+        <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full mt-20">
           <h1 className="text-3xl font-bold mb-4 text-center">Bli medlem</h1>
 
           <div className="flex">

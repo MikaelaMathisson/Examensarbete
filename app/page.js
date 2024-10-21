@@ -15,7 +15,7 @@ const openingHours = [
 export default function Home() {
     return (
         <div className="flex flex-col min-h-screen">
-            <main className="flex-grow flex items-center justify-center bg-page bg-gray-100 bg-opacity-50 p-4 main-content">
+            <main className="flex-grow flex items-center justify-center  bg-gray-100 bg-opacity-50 p-4 main-content bg-home">
                 <div className="flex flex-col items-center justify-center w-full max-w-4xl relative">
                     <div className="flex flex-row items-start justify-between w-full equal-height">
                         <div className="bg-opacity-50 bg-white p-8 shadow-lg rounded-lg text-center w-2/3 mb-4">
