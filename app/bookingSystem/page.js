@@ -16,14 +16,14 @@ const BookingSystem = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <main className="flex-grow flex items-center justify-center bg-gray-100 p-4">
-                <div className="bg-white p-8 shadow-lg rounded-lg text-center max-w-lg w-full">
+        <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+            <main className="flex-grow flex items-center justify-center p-4">
+                <div className="bg-white p-8 shadow-2xl rounded-lg text-center max-w-lg w-full">
                     <div className="flex justify-between items-center mb-8">
-                        <h1 className="font-bold text-black text-4xl">Boka arbetspass i kiosken</h1>
+                        <h1 className="font-bold text-gray-800 text-4xl">Boka arbetspass i kiosken</h1>
                         <button onClick={handleMyBookings} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Mina bokningar</button>
                     </div>
-                    <p>Välj typ av träning för att fortsätta.</p>
+                    <p className="text-gray-700 mb-4">Välj typ av träning för att fortsätta.</p>
                     <div className="space-y-4">
                         <div className="flex justify-between items-center bg-gray-200 p-4 rounded">
                             <div className="text-left">
