@@ -8,7 +8,7 @@ const BookingSystem = () => {
     const router = useRouter();
 
     const handleBookingType = (type) => {
-        router.push(`/bookingSystem/${type}`);
+        router.push(`/bookingSystem/calendar?type=${type}`);
     };
 
     const handleMyBookings = () => {
