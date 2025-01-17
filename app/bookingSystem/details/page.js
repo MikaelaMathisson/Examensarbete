@@ -9,6 +9,7 @@ const BookingDetailsPage = () => {
     const [personnummer, setPersonnummer] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const [confirmationMessage, setConfirmationMessage] = useState('');
     const router = useRouter();
 
     const handleConfirmBooking = () => {
@@ -32,10 +33,16 @@ const BookingDetailsPage = () => {
             })
             .then((data) => {
                 console.log('Booking confirmed:', data);
+                setConfirmationMessage('Bokningen är bekräftad!');
+                setName('');
+                setPersonnummer('');
+                setPhone('');
+                setEmail('');
                 // Redirect to a confirmation page or show a success message
             })
             .catch((error) => {
                 console.error('Error confirming booking:', error);
+                setConfirmationMessage('Ett fel uppstod vid bokningen.');
                 // Show an error message to the user
             });
     };
@@ -82,6 +89,11 @@ const BookingDetailsPage = () => {
                             Bekräfta Bokning
                         </button>
                     </form>
+                    {confirmationMessage && (
+                        <div className="mt-4 p-2 bg-green-200 text-green-800 rounded">
+                            {confirmationMessage}
+                        </div>
+                    )}
                 </div>
             </main>
         </div>
