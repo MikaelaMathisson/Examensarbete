@@ -91,7 +91,7 @@ const Navbar = () => {
                             <Link href="/members/medlemsinfo" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                                 Medlemsinfo
                             </Link>
-                            <Link href="/members/boka-kioskdag" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                            <Link href="/bookingSystem" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                                 Boka kioskdag
                             </Link>
                             <Link href="/members/instruktioner-kiosken" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
