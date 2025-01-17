@@ -12,6 +12,11 @@ const BookingDetailsPage = () => {
     const router = useRouter();
 
     const handleConfirmBooking = () => {
+        if (!date || !name || !personnummer || !phone || !email) {
+            console.error('All fields are required');
+            return;
+        }
+
         fetch('/api/submitBooking', {
             method: 'POST',
             headers: {
@@ -29,7 +34,10 @@ const BookingDetailsPage = () => {
                 console.log('Booking confirmed:', data);
                 // Redirect to a confirmation page or show a success message
             })
-            .catch((error) => console.error('Error confirming booking:', error));
+            .catch((error) => {
+                console.error('Error confirming booking:', error);
+                // Show an error message to the user
+            });
     };
 
     return (

@@ -19,7 +19,10 @@ const Calendar = ({ type }) => {
                 console.log('Fetched bookings:', data);
                 setBookings(data);
             })
-            .catch((error) => console.error('Error fetching bookings:', error));
+            .catch((error) => {
+                console.error('Error fetching bookings:', error);
+                // Show an error message to the user
+            });
     }, []);
 
     const isDateBooked = (date) => {
