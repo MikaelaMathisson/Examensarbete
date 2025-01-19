@@ -1,39 +1,13 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const Calendar = ({ type }) => {
-    const [bookings, setBookings] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const router = useRouter();
 
-    useEffect(() => {
-        fetch('/api/bookings')
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return res.json();
-            })
-            .then((data) => {
-                console.log('Fetched bookings:', data);
-                setBookings(data);
-            })
-            .catch((error) => {
-                console.error('Error fetching bookings:', error);
-            });
-    }, []);
-
-    const isDateBooked = (date) => {
-        const booked = bookings.some(booking => booking.date === date && !booking.is_available);
-        console.log(`Date: ${date}, Booked: ${booked}`);
-        return booked;
-    };
-
     const handleDateClick = (date) => {
-        if (!isDateBooked(date)) {
-            setSelectedDate(date);
-        }
+        setSelectedDate(date);
     };
 
     const renderMonth = (month, year) => {
@@ -42,11 +16,10 @@ const Calendar = ({ type }) => {
 
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month, day).toISOString().split('T')[0];
-            const booked = isDateBooked(date);
             calendarDays.push(
                 <div
                     key={day}
-                    className={`p-2 cursor-pointer ${booked ? 'bg-red-200' : selectedDate === date ? 'bg-green-200' : 'bg-white'}`}
+                    className={`p-2 cursor-pointer ${selectedDate === date ? 'bg-green-200' : 'bg-white'}`}
                     onClick={() => handleDateClick(date)}
                 >
                     {day}

@@ -8,4 +8,5 @@ const pool = new Pool({
     port: 5432,
 });
 
-export const query = (text, params) => pool.query(text, params);
+export const queryBookings = (text, params) => pool.query(text, params);
+export const queryMembers = (text, params) => pool.query(text, params);

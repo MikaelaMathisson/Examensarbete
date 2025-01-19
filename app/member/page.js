@@ -1,37 +1,53 @@
-// app/member/page.js
 "use client";
-import React, { useState } from "react";
-import "../globals.css"; // Corrected import path
+import React, { useState } from 'react';
+import '../globals.css';
 
 const Page = () => {
   const [formData, setFormData] = useState({
-    membershipType: "",
-    firstName: "",
-    lastName: "",
-    personalNumber: "",
-    email: "",
-    phone: "",
-    sport: "",
+    membershipType: '',
+    firstName: '',
+    lastName: '',
+    personalNumber: '',
+    email: '',
+    phone: '',
+    sport: '',
     consent: false,
-    verification: "",
+    verification: '',
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
+    try {
+      const response = await fetch('/api/submitMember', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert(data.message);
+      } else {
+        alert('Error: ' + data.message);
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      alert('Error submitting application');
+    }
   };
 
   return (
       <div className="flex justify-center items-center min-h-screen bg-page p-5 font-sans">
-        <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full ">
+        <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full">
           <h1 className="text-3xl font-bold mb-10 text-center">Bli medlem</h1>
           <div className="flex">
             <div className="w-1/2 pr-8">
@@ -42,31 +58,25 @@ const Page = () => {
               <ol>Enskild medlem 1200kr</ol>
               <ol>Familjemedlem 1400kr</ol>
               <ol>Stödmedlem 500kr</ol>
-              <p> Läs mer om de olika medlemskapen på
-                <a href="/members" className="text-blue-600 hover:underline "> Medlemmar</a>
+              <p>
+                Läs mer om de olika medlemskapen på
+                <a href="/members" className="text-blue-600 hover:underline"> Medlemmar</a>
               </p>
               <h2 className="text-2xl font-semibold mb-3 mt-10">Medlemsförmåner</h2>
               <ol className="list-decimal list-inside">
                 <ol className="mb-4">Träna till lägre priser!</ol>
-                <ol  className="mb-4">Möjlighet att tjäna ihop till träningskort så att du får träna gratis på alla AMCs banor (läs mer
-                  under Medlemmar)
-                </ol>
-                <ol  className="mb-4" >Köpa snygga klubbprodukter till rabatterat pris </ol>
-                <ol  className="mb-4">Få 50 % tillbaka på nationella tävlingsavgifter som aktiv medlem och om du kör med AMCs klubbtröja
-                  och innehar träningskort för innevarande år.
-                </ol>
-                <ol  className="mb-4">Delta i det tränarledda klubbträningar gratis</ol>
-                <ol  className="mb-4">Delta i läger till subventionerade priser</ol>
-                <ol  className="mb-4">Vara med i årets mest prestigfyllda tävling, KM</ol>
+                <ol className="mb-4">Möjlighet att tjäna ihop till träningskort så att du får träna gratis på alla AMCs banor (läs mer under Medlemmar)</ol>
+                <ol className="mb-4">Köpa snygga klubbprodukter till rabatterat pris</ol>
+                <ol className="mb-4">Få 50 % tillbaka på nationella tävlingsavgifter som aktiv medlem och om du kör med AMCs klubbtröja och innehar träningskort för innevarande år.</ol>
+                <ol className="mb-4">Delta i det tränarledda klubbträningar gratis</ol>
+                <ol className="mb-4">Delta i läger till subventionerade priser</ol>
+                <ol className="mb-4">Vara med i årets mest prestigfyllda tävling, KM</ol>
               </ol>
             </div>
             <div className="w-1/2">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="membershipType"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="membershipType">
                     Typ av medlemskap
                   </label>
                   <select
@@ -84,10 +94,7 @@ const Page = () => {
                   </select>
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="firstName"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="firstName">
                     Förnamn
                   </label>
                   <input
@@ -101,10 +108,7 @@ const Page = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="lastName"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="lastName">
                     Efternamn
                   </label>
                   <input
@@ -118,10 +122,7 @@ const Page = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="personalNumber"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="personalNumber">
                     Fullständigt personnummer
                   </label>
                   <input
@@ -135,10 +136,7 @@ const Page = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="email"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
                     E-post
                   </label>
                   <input
@@ -152,10 +150,7 @@ const Page = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="phone"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="phone">
                     Telefonnummer
                   </label>
                   <input
@@ -169,10 +164,7 @@ const Page = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="sport"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="sport">
                     Sportgren
                   </label>
                   <select
@@ -198,15 +190,11 @@ const Page = () => {
                         className="mr-2 leading-tight"
                         required
                     />
-                    Jag ger mitt medgivande till att denna hemsida sparar
-                    informationen i detta formulär i syfte att kunna kontakta mig.
+                    Jag ger mitt medgivande till att denna hemsida sparar informationen i detta formulär i syfte att kunna kontakta mig.
                   </label>
                 </div>
                 <div className="mb-4">
-                  <label
-                      className="block text-gray-700 font-bold mb-2"
-                      htmlFor="verification"
-                  >
+                  <label className="block text-gray-700 font-bold mb-2" htmlFor="verification">
                     Skriv följande siffror i fältet (43439)
                   </label>
                   <input
