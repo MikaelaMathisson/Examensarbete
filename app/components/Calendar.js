@@ -21,7 +21,6 @@ const Calendar = ({ type }) => {
             })
             .catch((error) => {
                 console.error('Error fetching bookings:', error);
-                // Show an error message to the user
             });
     }, []);
 
