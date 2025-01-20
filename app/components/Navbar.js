@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt, faShoppingCart, faInfoCircle, faMapMarkerAlt, faEnvelope, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faShoppingCart, faInfoCircle, faMapMarkerAlt, faEnvelope, faChevronDown, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { signIn } from "next-auth/react";
 
 const Navbar = () => {
     const currentPath = usePathname();
@@ -118,7 +119,7 @@ const Navbar = () => {
                 <Link href="/calendar" className={linkClasses('/calendar')} title="Kalender">
                     <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
                 </Link>
-                <Link href="https://shop.thorsellsreklam.se/category/arlanda-mc" className={linkClasses('/webshop')} title="Webshop">
+                <Link href="https://shop.thorsellsreklam.se/klubbsidor/arlanda-mc" className={linkClasses('/webshop')} title="Webshop">
                     <FontAwesomeIcon icon={faShoppingCart} size="lg" />
                 </Link>
                 <Link href="/about" className={linkClasses('/about')} title="Om oss">
@@ -132,6 +133,9 @@ const Navbar = () => {
                 </Link>
                 <Link href="https://www.facebook.com/arlandamc" className={linkClasses('/facebook')} title="Facebook" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faFacebook} size="lg" />
+                </Link>
+                <Link href="/admin" className={linkClasses('/admin')} title="Admin">
+                    <FontAwesomeIcon icon={faUserShield} size="lg" />
                 </Link>
             </div>
         </nav>
