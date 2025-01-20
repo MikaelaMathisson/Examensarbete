@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
+import moment from 'moment-timezone';
 
 // Konfigurera PostgreSQL-anslutning
 const pool = new Pool({
@@ -24,13 +25,16 @@ export async function POST(req) {
             );
         }
 
+        // Konvertera datum till svensk tid
+        const swedishDate = moment.tz(date, 'Europe/Stockholm').format();
+
         // SQL-fråga för att lägga till bokningen i databasen
         const query = `
             INSERT INTO bookings (date, name, personnummer, phone, email)
             VALUES ($1, $2, $3, $4, $5)
-            RETURNING *;  -- Returnerar den nyligen tillagda raden
+            RETURNING *;  // Returnerar den nyligen tillagda raden
         `;
-        const values = [date, name, personnummer, phone, email];
+        const values = [swedishDate, name, personnummer, phone, email];
 
         // Exekvera SQL-frågan
         const result = await pool.query(query, values);

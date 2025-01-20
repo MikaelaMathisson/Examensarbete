@@ -1,20 +1,25 @@
 import { NextResponse } from 'next/server';
-import { pool } from '@/app/lib/db';  // Adjust the path as needed
+import { pool } from "@/app/lib/db";
+import moment from 'moment-timezone';
 
-export async function GET(request) {
+export async function GET() {
     try {
-        // Query to get all distinct booked dates from the bookings table
-        const { rows } = await pool.query('SELECT DISTINCT date FROM "public"."bookings" WHERE is_available = false');
+        // Hämta alla bokningar där is_available är false
+        const { rows } = await pool.query('SELECT * FROM public.bookings WHERE is_available = false');
 
-        // If there are booked dates, return them
-        if (rows.length > 0) {
-            return NextResponse.json(rows);
-        } else {
-            return NextResponse.json({ message: 'No booked dates found' }, { status: 404 });
-        }
+        // Konvertera datum till svensk tid
+        const bookings = rows.map(booking => ({
+            ...booking,
+            date: moment.tz(booking.date, 'Europe/Stockholm').format()
+        }));
 
+        // Logga bokningarna för att säkerställa att vi får data
+        console.log('Bokningar som inte är tillgängliga:', bookings);
+
+        // Returnera bokningarna som JSON
+        return NextResponse.json(bookings);
     } catch (error) {
-        console.error('Error fetching booked dates:', error);
-        return NextResponse.json({ error: 'Something went wrong', details: error.message }, { status: 500 });
+        console.error('Error fetching bookings:', error);
+        return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
     }
 }
