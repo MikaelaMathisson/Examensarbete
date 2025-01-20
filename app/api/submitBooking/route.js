@@ -11,6 +11,12 @@ const pool = new Pool({
     port: 5432,
 });
 
+const generateBookingNumber = () => {
+    const timestamp = Date.now();
+    const randomNum = Math.floor(Math.random() * 10000);
+    return `BN-${timestamp}-${randomNum}`;
+};
+
 export async function POST(req) {
     try {
         // Get request body as JSON
@@ -49,13 +55,16 @@ export async function POST(req) {
             );
         }
 
+        // Generate a random booking number
+        const bokningsnummer = generateBookingNumber();
+
         // SQL query to add the booking to the database
         const query = `
-            INSERT INTO bookings (date, name, personnummer, phone, email)
-            VALUES ($1, $2, $3, $4, $5)
+            INSERT INTO bookings (date, name, personnummer, phone, email, bokningsnummer)
+            VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING *;
         `;
-        const values = [swedishDate, name, personnummer, phone, email];
+        const values = [swedishDate, name, personnummer, phone, email, bokningsnummer];
 
         // Execute the SQL query
         const result = await pool.query(query, values);
