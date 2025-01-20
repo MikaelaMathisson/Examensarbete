@@ -18,6 +18,7 @@ const isAllowedDate = (date) => {
 const Calendar = ({ type }) => {
     const [bookings, setBookings] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [role, setRole] = useState('');
     const router = useRouter();
 
     useEffect(() => {
@@ -39,7 +40,15 @@ const Calendar = ({ type }) => {
     // Check if the date is booked
     const isDateBooked = (date) => {
         const formattedDate = formatDate(date);
-        return bookings.some(booking => formatDate(booking.date) === formattedDate && !booking.is_available);
+        const dayOfWeek = moment.tz(date, 'Europe/Stockholm').day();
+        const bookingsOnDate = bookings.filter(booking => formatDate(booking.date) === formattedDate);
+
+        if (dayOfWeek === 3) {
+            return bookingsOnDate.length >= 1; // Only one booking allowed on Wednesdays
+        } else if (dayOfWeek === 6 || dayOfWeek === 0) {
+            return bookingsOnDate.length >= 2; // Two bookings allowed on Saturdays and Sundays
+        }
+        return bookingsOnDate.some(booking => !booking.is_available);
     };
 
     const handleDateClick = (date) => {
@@ -49,8 +58,15 @@ const Calendar = ({ type }) => {
     };
 
     const renderMonth = (month, year) => {
-        const daysInMonth = moment.tz({ year, month }, 'Europe/Stockholm').daysInMonth();
+        const startOfMonth = moment.tz({ year, month }, 'Europe/Stockholm').startOf('month');
+        const daysInMonth = startOfMonth.daysInMonth();
+        const startDay = (startOfMonth.day() + 6) % 7; // Adjust start day to start from Monday
         const calendarDays = [];
+
+        // Add empty days for the days before the start of the month
+        for (let i = 0; i < startDay; i++) {
+            calendarDays.push(<div key={`empty-${i}`} className="p-2"></div>);
+        }
 
         for (let day = 1; day <= daysInMonth; day++) {
             const date = moment.tz({ year, month, day }, 'Europe/Stockholm');
@@ -78,8 +94,11 @@ const Calendar = ({ type }) => {
 
         return (
             <div key={month} className="mb-4">
-                <h2 className="font-bold text-xl mb-2">{moment.tz({ year, month }, 'Europe/Stockholm').format('MMMM')}</h2>
+                <h2 className="font-bold text-xl mb-2">{startOfMonth.format('MMMM')}</h2>
                 <div className="grid grid-cols-7 gap-2">
+                    {['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'].map((day, index) => (
+                        <div key={index} className="p-2 font-bold">{day}</div>
+                    ))}
                     {calendarDays}
                 </div>
             </div>
@@ -100,17 +119,27 @@ const Calendar = ({ type }) => {
 
     const handleNextClick = () => {
         if (selectedDate) {
-            router.push(`/bookingSystem/details?date=${selectedDate}`);
+            router.push(`/bookingSystem/details?date=${selectedDate}&role=${role}`);
         }
     };
 
     return (
         <div>
             {renderYear()}
+            {selectedDate && (moment.tz(selectedDate, 'Europe/Stockholm').day() === 6 || moment.tz(selectedDate, 'Europe/Stockholm').day() === 0) && (
+                <div className="mt-4">
+                    <label className="block mb-2">Välj roll:</label>
+                    <select value={role} onChange={(e) => setRole(e.target.value)} className="p-2 border border-gray-300 rounded">
+                        <option value="">Välj roll</option>
+                        <option value="Banvärd">Banvärd</option>
+                        <option value="Kioskansvarig">Kioskansvarig</option>
+                    </select>
+                </div>
+            )}
             <button
                 className="mt-4 p-2 bg-blue-500 text-white rounded"
                 onClick={handleNextClick}
-                disabled={!selectedDate}
+                disabled={!selectedDate || (moment.tz(selectedDate, 'Europe/Stockholm').day() !== 6 && moment.tz(selectedDate, 'Europe/Stockholm').day() !== 0 && !role)}
             >
                 Next
             </button>
