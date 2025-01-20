@@ -18,7 +18,6 @@ const isAllowedDate = (date) => {
 const Calendar = ({ type }) => {
     const [bookings, setBookings] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
-    const [role, setRole] = useState('');
     const router = useRouter();
 
     useEffect(() => {
@@ -119,27 +118,17 @@ const Calendar = ({ type }) => {
 
     const handleNextClick = () => {
         if (selectedDate) {
-            router.push(`/bookingSystem/details?date=${selectedDate}&role=${role}`);
+            router.push(`/bookingSystem/details?date=${selectedDate}`);
         }
     };
 
     return (
         <div>
             {renderYear()}
-            {selectedDate && (moment.tz(selectedDate, 'Europe/Stockholm').day() === 6 || moment.tz(selectedDate, 'Europe/Stockholm').day() === 0) && (
-                <div className="mt-4">
-                    <label className="block mb-2">Välj roll:</label>
-                    <select value={role} onChange={(e) => setRole(e.target.value)} className="p-2 border border-gray-300 rounded">
-                        <option value="">Välj roll</option>
-                        <option value="Banvärd">Banvärd</option>
-                        <option value="Kioskansvarig">Kioskansvarig</option>
-                    </select>
-                </div>
-            )}
             <button
                 className="mt-4 p-2 bg-blue-500 text-white rounded"
                 onClick={handleNextClick}
-                disabled={!selectedDate || (moment.tz(selectedDate, 'Europe/Stockholm').day() !== 6 && moment.tz(selectedDate, 'Europe/Stockholm').day() !== 0 && !role)}
+                disabled={!selectedDate}
             >
                 Next
             </button>

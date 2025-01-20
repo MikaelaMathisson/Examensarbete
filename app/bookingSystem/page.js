@@ -7,8 +7,8 @@ import { faClock, faUser } from "@fortawesome/free-solid-svg-icons";
 const BookingSystem = () => {
     const router = useRouter();
 
-    const handleBookingType = (type) => {
-        router.push(`/bookingSystem/calendar?type=${type}`);
+    const handleBookingClick = () => {
+        router.push(`/bookingSystem/calendar`);
     };
 
     const handleMyBookings = () => {
@@ -23,29 +23,26 @@ const BookingSystem = () => {
                         <h1 className="font-bold text-gray-800 text-4xl">Boka arbetspass i kiosken</h1>
                         <button onClick={handleMyBookings} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Mina bokningar</button>
                     </div>
-                    <p className="text-gray-700 mb-4">Välj typ av träning för att fortsätta.</p>
+                    <p className="text-gray-700 mb-4">Info om de olika passen som går att boka:</p>
                     <div className="space-y-4">
-                        <div className="flex justify-between items-center bg-gray-200 p-4 rounded">
+                        <div className="bg-gray-200 p-4 rounded">
                             <div className="text-left">
                                 <h2 className="font-bold text-xl">Onsdagsträning</h2>
                                 <p className="text-gray-700">
                                     <FontAwesomeIcon icon={faClock} className="mr-2" /> 3 timmar
-                                    <FontAwesomeIcon icon={faUser} className="ml-4 mr-2" /> 1 person
                                 </p>
                             </div>
-                            <button onClick={() => handleBookingType('onsdagstraning')} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Boka</button>
                         </div>
-                        <div className="flex justify-between items-center bg-gray-200 p-4 rounded">
+                        <div className="bg-gray-200 p-4 rounded">
                             <div className="text-left">
-                                <h2 className="font-bold text-xl">Helg träning</h2>
+                                <h2 className="font-bold text-xl">Helg träningsdag</h2>
                                 <p className="text-gray-700">
                                     <FontAwesomeIcon icon={faClock} className="mr-2" /> 7 timmar
-                                    <FontAwesomeIcon icon={faUser} className="ml-4 mr-2" /> 2 personer
                                 </p>
                             </div>
-                            <button onClick={() => handleBookingType('helgtraning')} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Boka</button>
                         </div>
                     </div>
+                    <button onClick={handleBookingClick} className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Boka</button>
                 </div>
             </main>
         </div>
