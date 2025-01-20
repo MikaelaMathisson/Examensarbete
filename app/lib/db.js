@@ -3,10 +3,15 @@ import { Pool } from 'pg';
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'postgres',
+    database: 'booking_db',
     password: 'mysecretpassword',
     port: 5432,
 });
 
-export const queryBookings = (text, params) => pool.query(text, params);
-export const queryMembers = (text, params) => pool.query(text, params);
+
+export { pool };
+
+/*
+export const query = (text, params) => pool.query(text, params);
+:/
+ */

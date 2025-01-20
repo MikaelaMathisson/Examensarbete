@@ -119,7 +119,7 @@ const Navbar = () => {
                 <Link href="/calendar" className={linkClasses('/calendar')} title="Kalender">
                     <FontAwesomeIcon icon={faCalendarAlt} size="lg" />
                 </Link>
-                <Link href="https://shop.thorsellsreklam.se/category/arlanda-mc" className={linkClasses('/webshop')} title="Webshop">
+                <Link href="https://shop.thorsellsreklam.se/klubbsidor/arlanda-mc" className={linkClasses('/webshop')} title="Webshop">
                     <FontAwesomeIcon icon={faShoppingCart} size="lg" />
                 </Link>
                 <Link href="/about" className={linkClasses('/about')} title="Om oss">
