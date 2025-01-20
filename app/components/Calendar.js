@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import moment from 'moment-timezone';
 
@@ -16,9 +16,9 @@ const isAllowedDate = (date) => {
 };
 
 const Calendar = ({ type }) => {
-    const [bookings, setBookings] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
     const router = useRouter();
+
 
     useEffect(() => {
         fetch('/api/bookings')
@@ -68,6 +68,7 @@ const Calendar = ({ type }) => {
         }
 
         for (let day = 1; day <= daysInMonth; day++) {
+
             const date = moment.tz({ year, month, day }, 'Europe/Stockholm');
             const formattedDate = formatDate(date);
             const booked = isDateBooked(formattedDate);
