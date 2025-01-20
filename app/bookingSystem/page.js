@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faUser } from "@fortawesome/free-solid-svg-icons";
 
+
 const BookingSystem = () => {
     const router = useRouter();
 
@@ -30,6 +31,8 @@ const BookingSystem = () => {
                                 <h2 className="font-bold text-xl">Onsdagsträning</h2>
                                 <p className="text-gray-700">
                                     <FontAwesomeIcon icon={faClock} className="mr-2" /> 3 timmar
+                                    <FontAwesomeIcon icon={faUser} className="mr-2 ml-3" /> 1 person
+
                                 </p>
                             </div>
                         </div>
@@ -38,6 +41,8 @@ const BookingSystem = () => {
                                 <h2 className="font-bold text-xl">Helg träningsdag</h2>
                                 <p className="text-gray-700">
                                     <FontAwesomeIcon icon={faClock} className="mr-2" /> 7 timmar
+                                    <FontAwesomeIcon icon={faUser} className="mr-2 ml-3" /> 2 personer
+
                                 </p>
                             </div>
                         </div>
