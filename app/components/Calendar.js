@@ -16,7 +16,7 @@ const Calendar = ({ type }) => {
                 return res.json();
             })
             .then((data) => {
-                console.log('Fetched bookings:', data);
+                console.log('Fetched bookings:', data); // Kontrollera här
                 setBookings(data);
             })
             .catch((error) => {
