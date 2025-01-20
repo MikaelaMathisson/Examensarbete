@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     animation: slideBackground 20s infinite;
-
+}
 
 html, body {
     height: 100%;
@@ -73,11 +73,14 @@ body {
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
+}
+
 #root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 main {
     flex-grow: 1;
 }
@@ -87,38 +90,6 @@ footer {
     z-index: 10;
 }
 
-.bg-home {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    animation: slideBackground 20s infinite;
-}
-
-@keyframes slideBackground {
-    0% {
-        background-image: url("/background1.jpg");
-    }
-    15% {
-        background-image: url("/background2.jpg");
-    }
-    30% {
-        background-image: url("/background3.jpg");
-    }
-    45% {
-        background-image: url("/background1.jpg");
-    }
-    60% {
-        background-image: url("/background1.jpg");
-    }
-    75% {
-        background-image: url("/background2.jpg");
-    }
-    100% {
-        background-image: url("/background3.jpg");
-    }
-}
-
 .bg-other {
     background-image: url("/background1.jpg");
     background-size: cover;
@@ -126,18 +97,11 @@ footer {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
 .full-width-div {
     width: 100%;
-margin: 0;
-padding: 0;
-}
-
-.bg-other {
-    background-image: url("/background1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
 }
 
 /* globals.css */
@@ -148,10 +112,6 @@ padding: 0;
             -1px  1px 0 #000,
             1px  1px 0 #000;
 }
-
-
-
-
 
 /* Styles for calendar */
 .custom-calendar {
@@ -203,7 +163,7 @@ padding: 0;
     color: #555;
 }
 
-/* Styles for calender and member buttons under welcome sign */
+/* Styles for calendar and member buttons under welcome sign */
 .additional-links {
     margin-top: 20px;
     text-align: center;
