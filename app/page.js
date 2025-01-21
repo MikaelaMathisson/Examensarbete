@@ -1,18 +1,31 @@
-// app/page.js
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import Footer from "./components/Footer";
 import SponsorSlider from "./components/SponsorSlider";
 import "./globals.css";
 
-const openingHours = [
-    { day: "Onsdag", hours: "09:00 - 15:00", tracks: [] },
-    { day: "Lördag", hours: "10:00 - 14:00", tracks: ["Enduro", "MX"] },
-    { day: "Söndag", hours: "10:00 - 14:00", tracks: ["Enduro"] },
-];
-
 export default function Home() {
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const response = await fetch('/api/events/thisWeek');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setEvents(data);
+            } catch (error) {
+                console.error('Failed to fetch events:', error);
+            }
+        };
+
+        fetchEvents();
+    }, []);
+
     return (
         <div className="flex flex-col h-screen">
             <main className="flex-grow flex items-center justify-center bg-gray-100 bg-opacity-50 p-4 main-content bg-home h-screen">
@@ -39,13 +52,12 @@ export default function Home() {
                         <div className="bg-white bg-opacity-75 p-5 rounded-lg shadow-md max-w-xs mx-auto flex flex-col justify-center">
                             <h2 className="text-2xl font-bold mb-4 text-gray-800">Öppettider denna vecka</h2>
                             <ul className="list-none p-0">
-                                {openingHours.map((item, index) => (
-                                    <li key={index} className="flex flex-col justify-between py-1.5 mb-5">
-                                        <span className="font-semibold">{item.day}:</span> {item.hours}
-                                        {item.tracks.length > 0 && (
-                                            <div className="mt-1 text-sm text-gray-800">
-                                                <span className="font-semibold">Banor öppna:</span> {item.tracks.join(", ")}
-                                            </div>
+                                {events.map((event) => (
+                                    <li key={event.id} className="flex flex-col justify-between py-1.5 mb-5">
+                                        <span className="font-semibold">{event.title}:</span> {event.date} {event.start_time} - {event.end_time}
+                                        <p>{event.description}</p>
+                                        {event.color === '#FF0000' && (
+                                            <p className="text-red-600 font-bold">Stängt</p>
                                         )}
                                     </li>
                                 ))}

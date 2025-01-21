@@ -1,4 +1,3 @@
-// components/Calendar.js
 "use client";
 
 import React, { useEffect, useState } from 'react';
@@ -6,24 +5,22 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 const CalendarPage = () => {
-    const [events, setEvents] = useState([
-        {
-            id: 1,
-            title: "Meeting",
-            date: "2023-10-10",
-            color: "#FF0000",
-            time: "10:00 AM",
-            description: "Team meeting to discuss project updates."
-        }
-    ]);
+    const [events, setEvents] = useState([]);
     const [date, setDate] = useState(new Date());
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     useEffect(() => {
         const fetchEvents = async () => {
-            const response = await fetch('/api/events');
-            const data = await response.json();
-            setEvents(data);
+            try {
+                const response = await fetch('/api/events');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setEvents(data);
+            } catch (error) {
+                console.error('Failed to fetch events:', error);
+            }
         };
 
         fetchEvents();
@@ -57,15 +54,15 @@ const CalendarPage = () => {
                     className="w-full text-black"
                     tileClassName={({ activeStartDate, date, view }) =>
                         "p-2 text-center" +
-                        (view === 'month' && date.toDateString() === new Date().toDateString() ? " bg-blue-600 text-white" : "")
+                        (view === 'month' && date.toDateString() === new Date().toDateString() ? " border-2 border-green-500" : "")
                     }
                 />
                 {selectedEvent && (
                     <div className="mt-4 p-4 bg-gray-100 rounded-lg shadow-md">
                         <h3 className="text-xl font-bold">{selectedEvent.title}</h3>
-                        <p>Date: {new Date(selectedEvent.date).toLocaleDateString()}</p>
-                        <p>Time: {selectedEvent.time}</p>
-                        <p>Description: {selectedEvent.description}</p>
+                        <p>Datum: {new Date(selectedEvent.date).toLocaleDateString()}</p>
+                        <p>Tid: {selectedEvent.start_time} - {selectedEvent.end_time}</p>
+                        <p>Info: {selectedEvent.description}</p>
                     </div>
                 )}
             </div>
