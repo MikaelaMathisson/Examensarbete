@@ -24,9 +24,9 @@ const Footer = () => {
                 <div className="w-full md:w-1/3 mb-4 text-center flex flex-col items-center border-t border-gray-600 pt-4 md:pt-0 md:border-t-0 md:border-l md:border-gray-600">
                     <h2 className="text-2xl font-bold mb-4">Meny</h2>
                     <ul className="grid grid-cols-2 gap-2">
-                        <li><a href="/about-us" className="hover:text-gray-400">Om oss</a></li>
+                        <li><a href="/about" className="hover:text-gray-400">Om oss</a></li>
                         <li><a href="/calendar" className="hover:text-gray-400">Kalender</a></li>
-                        <li><a href="/shop" className="hover:text-gray-400">Shop</a></li>
+                        <li><a href="https://shop.thorsellsreklam.se/klubbsidor/arlanda-mc" className="hover:text-gray-400">Shop</a></li>
                         <li><a href="https://www.google.com/maps/search/?api=1&query=Arlanda+MC,+123+45+Stockholm" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">Hitta till oss</a></li>
                         <li><a href="/contact" className="hover:text-gray-400">Kontakt</a></li>
                         <li><a href="/latestNews" className="hover:text-gray-400">Senaste nytt</a></li>

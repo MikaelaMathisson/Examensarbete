@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,8 @@ const Navbar = () => {
     const router = useRouter();
     const [isMotocrossDropdownOpen, setIsMotocrossDropdownOpen] = useState(false);
     const [isMembersDropdownOpen, setIsMembersDropdownOpen] = useState(false);
+    const motocrossDropdownRef = useRef(null);
+    const membersDropdownRef = useRef(null);
 
     const linkClasses = (path) =>
         `mr-10 hover:text-gray-700 font-bold ${currentPath === path ? 'text-yellow-500' : 'text-white'}`;
@@ -39,6 +41,22 @@ const Navbar = () => {
         setIsMembersDropdownOpen(!isMembersDropdownOpen);
     };
 
+    const handleClickOutside = (event) => {
+        if (motocrossDropdownRef.current && !motocrossDropdownRef.current.contains(event.target)) {
+            setIsMotocrossDropdownOpen(false);
+        }
+        if (membersDropdownRef.current && !membersDropdownRef.current.contains(event.target)) {
+            setIsMembersDropdownOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-30 bg-gray-800">
             <div className="flex items-center">
@@ -50,7 +68,7 @@ const Navbar = () => {
                 <Link href="/latestNews" className={linkClasses('/latestNews')} title="Senaste nytt">
                     Senaste nytt
                 </Link>
-                <div className="relative">
+                <div className="relative" ref={motocrossDropdownRef}>
                     <button onClick={handleMotocrossClick} className={`${linkClasses('/mx')} flex items-center`} title="MX">
                         Motocross
                         <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs" onClick={handleMotocrossDropdownToggle}/>
@@ -79,7 +97,7 @@ const Navbar = () => {
                     Enduro
                     <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs" />
                 </Link>
-                <div className="relative">
+                <div className="relative" ref={membersDropdownRef}>
                     <button onClick={handleMembersClick} className={`${linkClasses('/members')} flex items-center`} title="Medlemmar">
                         Medlemmar
                         <FontAwesomeIcon icon={faChevronDown} className="ml-2" size="xs" onClick={handleMembersDropdownToggle}/>
