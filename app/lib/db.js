@@ -11,7 +11,4 @@ const pool = new Pool({
 
 export { pool };
 
-/*
-export const query = (text, params) => pool.query(text, params);
-:/
- */
+
