@@ -6,7 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt, faShoppingCart, faInfoCircle, faMapMarkerAlt, faEnvelope, faChevronDown, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { signIn } from "next-auth/react";
 
 const Navbar = () => {
     const currentPath = usePathname();
