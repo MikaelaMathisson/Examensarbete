@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15  # Den version av PostgreSQL du använder
+    container_name: my-postgres-db
+    environment:
+      POSTGRES_USER: postgres       # Standardanvändare för databasen
+      POSTGRES_PASSWORD: mysecretpassword  # Ditt lösenord
+      POSTGRES_DB: booking_db       # Namnet på databasen
+    ports:
+      - "5432:5432"  # Gör databasen tillgänglig på port 5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql  # Koppla din init.sql till Docker
