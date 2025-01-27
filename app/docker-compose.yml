@@ -1,13 +1,28 @@
 version: '3.8'
+
 services:
   db:
-    image: postgres:15  # Den version av PostgreSQL du använder
-    container_name: my-postgres-db
+    image: postgres:latest
+    container_name: postgres_db
     environment:
-      POSTGRES_USER: postgres       # Standardanvändare för databasen
-      POSTGRES_PASSWORD: mysecretpassword  # Ditt lösenord
-      POSTGRES_DB: booking_db       # Namnet på databasen
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: postgres  # Namn på databasen
     ports:
-      - "5432:5432"  # Gör databasen tillgänglig på port 5432
+      - "5432:5432"  # Exponera PostgreSQL-porten
     volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql  # Koppla din init.sql till Docker
+      - pg_data:/var/lib/postgresql/data  # Persistens för datan
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"  # Exponera pgAdmin-porten
+    depends_on:
+      - db  # Vänta på att databasen är igång innan pgAdmin startas
+
+volumes:
+  pg_data:

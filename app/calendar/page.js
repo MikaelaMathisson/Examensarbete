@@ -61,7 +61,7 @@ const CalendarPage = () => {
                     <div className="mt-4 p-4 bg-gray-100 rounded-lg shadow-md">
                         <h3 className="text-xl font-bold">{selectedEvent.title}</h3>
                         <p>Datum: {new Date(selectedEvent.date).toLocaleDateString()}</p>
-                        <p>Tid: {selectedEvent.start_time} - {selectedEvent.end_time}</p>
+                        <p>Tid: {new Date(selectedEvent.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(selectedEvent.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                         <p>Info: {selectedEvent.description}</p>
                     </div>
                 )}
