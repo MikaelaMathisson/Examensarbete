@@ -51,17 +51,6 @@ next dev
 ```
 
 
-### Databasinfo
-Databasen körs i Docker-containern och är förinställd enligt följande:
-
-Databasnamn: postgres
-
-Användarnamn: postgres
-
-Lösenord: mysecretpassword
-
-Port: 5432
-
 ### Exempeldata
 Vid uppstart fylls databasen med exempeldata, inklusive:
 
