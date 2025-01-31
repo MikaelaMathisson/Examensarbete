@@ -1,21 +1,32 @@
-// app/latestNews/page.js
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import "../globals.css";
 import NewsCard from "../components/NewsCard";
 
 const SenasteNytt = () => {
-    const newsItems = [
-        { title: "GGN-Träning", description: "3 timmars träning med transpondersystem, öppen för alla.\n" +
-                "Vi körde på både crossbanan och endurobanan.\n" +
-                "Resultat totalt finns här.\n" +
-                "Alla varvtider finns här.", date: "2024-09-29" },
-        { title: "Resultat KM 2024 cross", description: "Årets KM kördes 5 okt.\n" +
-                "En samlad PDF-fil med alla resultat finns här.\n" +
-                "Resultat finns nu på Mylaps/Speedhive.", date: "2024-10-05" },
-        { title: "Gobraap 2.0", description: "Gobraap har släppt en ny version av appen," +
-                " och du som förare / förälder behöver uppdatera appen innan du kommer till banan." +
-                " (på grund av dålig täckning på anläggningen)", date: "2024-07-03" },
-    ];
+    const [newsItems, setNewsItems] = useState([]);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const response = await fetch('/api/news');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                // Format the date to only show the date part
+                const formattedData = data.map(item => ({
+                    ...item,
+                    date: new Date(item.date).toLocaleDateString()
+                }));
+                setNewsItems(formattedData);
+            } catch (error) {
+                console.error('Failed to fetch news:', error);
+            }
+        };
+
+        fetchNews();
+    }, []);
 
     return (
         <main className="flex items-center justify-center min-h-screen bg-other p-4">
