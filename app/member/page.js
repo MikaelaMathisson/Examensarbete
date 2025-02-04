@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import '../globals.css';
 
 const Page = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     membershipType: '',
     firstName: '',
     lastName: '',
@@ -13,7 +13,10 @@ const Page = () => {
     sport: '',
     consent: false,
     verification: '',
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+  const [verificationCode] = useState('43439'); // This should be generated dynamically in a real application
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -25,6 +28,14 @@ const Page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.consent) {
+      alert('Du måste ge ditt medgivande för att skicka ansökan.');
+      return;
+    }
+    if (formData.verification !== verificationCode) {
+      alert('Fel verifieringskod.');
+      return;
+    }
     try {
       const response = await fetch('/api/submitMember', {
         method: 'POST',
@@ -36,6 +47,7 @@ const Page = () => {
       const data = await response.json();
       if (response.ok) {
         alert(data.message);
+        resetForm();
       } else {
         alert('Error: ' + data.message);
       }
@@ -43,6 +55,10 @@ const Page = () => {
       console.error('Error submitting application:', error);
       alert('Error submitting application');
     }
+  };
+
+  const resetForm = () => {
+    setFormData(initialFormData);
   };
 
   return (
@@ -195,7 +211,7 @@ const Page = () => {
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 font-bold mb-2" htmlFor="verification">
-                    Skriv följande siffror i fältet (43439)
+                    Skriv följande siffror i fältet ({verificationCode})
                   </label>
                   <input
                       type="text"
