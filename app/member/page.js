@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import '../globals.css';
 
 const Page = () => {
@@ -16,7 +17,7 @@ const Page = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [verificationCode] = useState('43439'); // This should be generated dynamically in a real application
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,14 +27,18 @@ const Page = () => {
     });
   };
 
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.consent) {
       alert('Du måste ge ditt medgivande för att skicka ansökan.');
       return;
     }
-    if (formData.verification !== verificationCode) {
-      alert('Fel verifieringskod.');
+    if (!captchaToken) {
+      alert('Verifiera att du inte är en robot.');
       return;
     }
     try {
@@ -42,7 +47,7 @@ const Page = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, captchaToken }),
       });
       const data = await response.json();
       if (response.ok) {
@@ -59,6 +64,7 @@ const Page = () => {
 
   const resetForm = () => {
     setFormData(initialFormData);
+    setCaptchaToken(null);
   };
 
   return (
@@ -210,17 +216,9 @@ const Page = () => {
                   </label>
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-700 font-bold mb-2" htmlFor="verification">
-                    Skriv följande siffror i fältet ({verificationCode})
-                  </label>
-                  <input
-                      type="text"
-                      id="verification"
-                      name="verification"
-                      value={formData.verification}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 border rounded-lg"
-                      required
+                  <ReCAPTCHA
+                      sitekey="YOUR_RECAPTCHA_SITE_KEY"
+                      onChange={handleCaptchaChange}
                   />
                 </div>
                 <button

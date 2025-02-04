@@ -3,10 +3,23 @@ import { pool } from '../../lib/db';
 
 export async function POST(req) {
     try {
-        const { membershipType, firstName, lastName, personalNumber, email, phone, sport, consent, verification } = await req.json();
+        const { membershipType, firstName, lastName, personalNumber, email, phone, sport, consent, captchaToken } = await req.json();
+
+        // Verifiera reCAPTCHA-token
+        const captchaResponse = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `secret=YOUR_RECAPTCHA_SECRET_KEY&response=${captchaToken}`,
+        });
+        const captchaData = await captchaResponse.json();
+        if (!captchaData.success) {
+            return new Response(JSON.stringify({ message: 'Invalid reCAPTCHA' }), { status: 400 });
+        }
 
         // Validera inkommande data
-        if (!membershipType || !firstName || !lastName || !personalNumber || !email || !phone || !sport || !consent || verification !== '43439') {
+        if (!membershipType || !firstName || !lastName || !personalNumber || !email || !phone || !sport || !consent) {
             return new Response(JSON.stringify({ message: 'Invalid input' }), { status: 400 });
         }
 
