@@ -53,3 +53,12 @@ export async function PUT(req) {
         return new Response(JSON.stringify({ error: 'Failed to update event' }), { status: 500 });
     }
 }
+export async function DELETE(req) {
+    try {
+        const { id } = await req.json();
+        await pool.query('DELETE FROM events WHERE id = $1', [id]);
+        return new Response(JSON.stringify({ message: 'Event deleted successfully' }), { status: 200 });
+    } catch (error) {
+        return new Response(JSON.stringify({ error: 'Failed to delete event' }), { status: 500 });
+    }
+}
