@@ -265,12 +265,12 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="grid grid-cols-2 gap-4 p-4 min-h-screen bg-gray-100">
-            <div className="col-span-2 flex justify-between items-center mb-4">
+        <div className="grid grid-cols-3 gap-4 p-4 min-h-screen bg-gray-100">
+            <div className="col-span-3 flex justify-between items-center mb-4">
                 <h1 className="text-3xl font-bold">Admin Översikt</h1>
                 <div className="text-xl">Dagens datum: {currentDate}</div>
             </div>
-            <div className="bg-white p-4 shadow-md">
+            <div className="bg-white p-4 shadow-md col-span-3">
                 <h2 className="text-2xl font-bold mb-2">Nya medlemsansökningar</h2>
                 <ul>
                     {members.map(member => (
@@ -284,7 +284,7 @@ const AdminDashboard = () => {
                 </ul>
             </div>
             {selectedMember && (
-                <div className="bg-white p-4 shadow-md col-span-2">
+                <div className="bg-white p-4 shadow-md col-span-3">
                     <h2 className="text-2xl font-bold mb-2">Medlemsansökan</h2>
                     <p><strong>Förnamn:</strong> {selectedMember.first_name}</p>
                     <p><strong>Efternamn:</strong> {selectedMember.last_name}</p>
@@ -294,7 +294,7 @@ const AdminDashboard = () => {
                     <button onClick={() => setSelectedMember(null)} className="mt-2 p-1 bg-gray-500 text-white">Stäng</button>
                 </div>
             )}
-            <div className="bg-white p-4 shadow-md">
+            <div className="bg-white p-4 shadow-md col-span-1">
                 <h2 className="text-2xl font-bold mb-2">Händelser på klubben</h2>
                 <ul>
                     {events.map(event => (
@@ -306,7 +306,7 @@ const AdminDashboard = () => {
                     ))}
                 </ul>
             </div>
-            <div className="bg-white p-4 shadow-md">
+            <div className="bg-white p-4 shadow-md col-span-1">
                 <h2 className="text-2xl font-bold mb-2">{editingEvent ? 'Ändra händelse' : 'Lägg till en ny händelse'}</h2>
                 <input
                     type="text"
@@ -354,7 +354,7 @@ const AdminDashboard = () => {
                     {editingEvent ? 'Update Event' : 'Add Event'}
                 </button>
             </div>
-            <div className="bg-white p-4 shadow-md">
+            <div className="bg-white p-4 shadow-md col-span-1">
                 <h2 className="text-2xl font-bold mb-2">{editingNews ? 'Ändra nyhet' : 'Lägg till en ny nyhet'}</h2>
                 <input
                     type="text"
@@ -380,7 +380,7 @@ const AdminDashboard = () => {
                     {editingNews ? 'Update News' : 'Add News'}
                 </button>
             </div>
-            <div className="bg-white p-4 shadow-md">
+            <div className="bg-white p-4 shadow-md col-span-1">
                 <h2 className="text-2xl font-bold mb-2">Senaste nytt</h2>
                 <ul>
                     {news.map(newsItem => (
@@ -392,7 +392,7 @@ const AdminDashboard = () => {
                     ))}
                 </ul>
             </div>
-            <div className="bg-white p-4 shadow-md col-span-2">
+            <div className="bg-white p-4 shadow-md col-span-1">
                 <h2 className="text-2xl font-bold mb-2">Kontaktmeddelanden</h2>
                 <ul>
                     {contacts.map(contact => (
@@ -407,13 +407,13 @@ const AdminDashboard = () => {
                     ))}
                 </ul>
             </div>
-            <div className="bg-white p-4 shadow-md col-span-2">
+            <div className="bg-white p-4 shadow-md col-span-1">
                 <h2 className="text-2xl font-bold mb-2">Svarade meddelanden</h2>
                 <ul>
                     {repliedContacts.slice(0, visibleRepliedCount).map(contact => (
                         <li key={contact.id} className="mb-2">
                             <p><strong>Namn:</strong> {contact.name}</p>
-                            <p><strong>E-post:</strong> {contact.email}</p>
+                            <p><strong>E-post:</strong> <a href={`mailto:${contact.email}`} className="text-blue-500 underline">{contact.email}</a></p>
                             <p><strong>Meddelande:</strong> {contact.message}</p>
                             <p><strong>Skickat:</strong> {new Date(contact.created_at).toLocaleString()}</p>
                             <hr className="my-2" />
