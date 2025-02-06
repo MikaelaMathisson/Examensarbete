@@ -5,16 +5,21 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import Footer from "./components/Footer";
 import SponsorSlider from "./components/SponsorSlider";
 import "./globals.css";
+import { Helmet } from "react-helmet";
+
+const openingHours = [
+    { day: "Onsdag", hours: "10:00 - 18:00" },
+    { day: "Lördag", hours: "10:00 - 16:00" },
+    { day: "Söndag", hours: "12:00 - 15:00" },
+];
 
 export default function Home() {
-    const openingHours = [
-        { day: "Onsdag", hours: "10:00 - 18:00" },
-        { day: "Lördag", hours: "10:00 - 16:00" },
-        { day: "Söndag", hours: "12:00 - 15:00" },
-    ];
-
     return (
         <div className="flex flex-col h-screen">
+            <Helmet>
+                <meta name="description" content="Arlanda MC är klubben för motorcykelentusiaster. Vi har öppet onsdagar, lördagar och söndagar. Välkommen till oss!" />
+                <title>Arlanda MC</title>
+            </Helmet>
             <main className="flex-grow flex items-center justify-center bg-gray-100 bg-opacity-50 p-4 main-content bg-home h-screen">
                 <div className="flex flex-col items-center justify-center w-full max-w-4xl relative">
                     <div className="flex flex-row items-stretch justify-between w-full equal-height">
