@@ -134,6 +134,10 @@ const AdminDashboard = () => {
     };
 
     const handleEditEvent = (event) => {
+        if (!event || !event.id) {
+            console.error('Invalid event');
+            return;
+        }
         setEditingEvent(event);
         setNewEvent({
             ...event,
@@ -224,7 +228,6 @@ const AdminDashboard = () => {
         fetch(`/api/news`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id })
         })
             .then(response => {
                 if (!response.ok) {
@@ -386,8 +389,7 @@ const AdminDashboard = () => {
                     {news.map(newsItem => (
                         <li key={newsItem.id} className="flex items-center">
                             <button onClick={() => handleEditNews(newsItem)} className="mr-2 p-1 bg-yellow-500 text-white border border-black mb-1">Ändra</button>
-                            <button onClick={() => handleDeleteNews(newsItem.id)} className="mr-2 p-1 bg-red-500 text-white border border-black">Ta bort</button>
-                            {newsItem.title} - {formatDate(newsItem.date)}
+                            <button onClick={() => handleDeleteNews(newsItem.id)} className="mr-2 p-1 bg-red-500 text-white border border-black">Ta bort</button>                            {newsItem.title} - {formatDate(newsItem.date)}
                         </li>
                     ))}
                 </ul>
